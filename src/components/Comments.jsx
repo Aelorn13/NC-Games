@@ -3,7 +3,6 @@ import { getCommentsByReviewId, patchComment, postComment } from "../utils/api";
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 function Comments({ review_id }) {
-  console.log(review_id);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const { user } = useContext(UserContext);
@@ -19,7 +18,7 @@ function Comments({ review_id }) {
       setNewComment("");
       setComments((comments) => {
         const newComments = [...comments];
-        newComments.unshift(commentFromApi);
+        newComments.push(commentFromApi);
         return newComments;
       });
     });
@@ -53,13 +52,15 @@ function Comments({ review_id }) {
       <br></br>
       <form onSubmit={handleSubmitAddComment}>
         <label>Your new special and important comment: </label>
-        <input
+        <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           required
-        ></input>
+        ></textarea>
       </form>
-      <button type="submit">Send comment</button>
+      <button type="submit" onClick={handleSubmitAddComment}>
+        Send comment
+      </button>
     </div>
   ) : (
     <div>
@@ -81,13 +82,15 @@ function Comments({ review_id }) {
       <br></br>
       <form onSubmit={handleSubmitAddComment}>
         <label>Your new special and important comment: </label>
-        <input
+        <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           required
-        ></input>
+        ></textarea>
       </form>
-      <button type="submit">Send comment</button>
+      <button type="submit" onClick={handleSubmitAddComment}>
+        Send comment
+      </button>
     </div>
   );
 }
