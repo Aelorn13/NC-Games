@@ -74,6 +74,7 @@ function ReviewElement() {
     <div className="ReviewElement">
       <h2>{review.title}</h2>
       <p>Category: {review.category}</p>
+      <p>posted by: {review.owner}</p>
       <img src={review.review_img_url} alt={review.title}></img>
       <p>Designer: {review.designer}</p>
       <button>Like this review</button>
