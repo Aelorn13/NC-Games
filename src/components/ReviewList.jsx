@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { getReviews } from "../utils/api";
+import { getReviews, patchReview } from "../utils/api";
+import { Link } from "react-router-dom";
+
 function ReviewList() {
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
@@ -10,7 +12,27 @@ function ReviewList() {
       setReviews(reviews);
     });
   }, []);
-  const handleClickReview = (e) => {};
+  const handleClickLike = (review_id) => {
+    setReviews((reviews) => {
+      return reviews.map((review) => {
+        if (review.review_id === review_id) {
+          return { ...review, votes: review.votes + 1 };
+        }
+        return review;
+      });
+    });
+    patchReview(review_id).catch((err) => {
+      alert("Sorry - please try again");
+      setReviews((reviews) => {
+        return reviews.map((review) => {
+          if (review.review_id === review_id) {
+            return { ...review, votes: review.votes - 1 };
+          }
+          return review;
+        });
+      });
+    });
+  };
 
   return loading ? (
     <p>loading...</p>
@@ -23,11 +45,15 @@ function ReviewList() {
               <h2>{review.title}</h2>
               <p>Category: {review.category}</p>
               <img src={review.review_img_url} alt={review.title}></img>
-              <p>Designer: {review.designer}</p>
+              <button onClick={() => handleClickLike(review.review_id)}>
+                Like
+              </button>
               <p>Votes: {review.votes}</p>
               <label>Comments: {review.comment_count}</label>
               <br></br>
-              <button onClick={handleClickReview}>Read review</button>
+              <Link to={`/reviews/${review.review_id}`}>
+                <button>Read review</button>
+              </Link>
             </li>
           );
         })}
