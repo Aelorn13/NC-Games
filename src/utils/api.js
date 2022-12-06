@@ -45,14 +45,14 @@ export const patchReview = (review_id) => {
       return data.comment;
     });
 };
-
-//also should be username
+export const deleteComment = (comment_id) => {
+  return beGamesApi.delete(`/comments/${comment_id}`);
+};
 export const postComment = (newCommentText, user, review_id) => {
   const postBody = {
     username: user.username,
     body: newCommentText,
   };
-  console.log(postBody);
   return beGamesApi
     .post(`/reviews/${review_id}/comments`, postBody)
     .then(({ data }) => {

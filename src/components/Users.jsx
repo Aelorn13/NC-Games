@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function Users() {
   const [users, setUsers] = useState([]);
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   useEffect(() => {
     getUsers().then((users) => {
       setUsers(users);
@@ -28,7 +28,7 @@ function Users() {
             <br />
             <h3>{user.name}</h3>
             <br />
-            <img src={user.avatar_url} />
+            <img src={user.avatar_url} alt={user.username} />
             <br />
             <button onClick={() => handleClickChangeUser(user)}>Log in</button>
           </div>
