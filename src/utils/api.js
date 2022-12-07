@@ -3,16 +3,21 @@ import axios from "axios";
 const beGamesApi = axios.create({
   baseURL: "https://dead-pink-hare-garb.cyclic.app/api",
 });
-//I tried to use this one to get my one review
-//never used it before so maybe this is just absoulutely wrong and dosn't work this way at all
-export const getReviews = () => {
-  return beGamesApi.get("/reviews").then((res) => {
+
+export const getReviews = (category) => {
+  return beGamesApi.get("/reviews", { params: { category } }).then((res) => {
     return res.data.reviews;
   });
 };
+
 export const getUsers = () => {
   return beGamesApi.get("/users").then((res) => {
     return res.data.users;
+  });
+};
+export const getCategories = () => {
+  return beGamesApi.get("/categories").then((res) => {
+    return res.data.categories;
   });
 };
 export const getReviewById = (review_id) => {
@@ -20,10 +25,6 @@ export const getReviewById = (review_id) => {
     return res.data.review;
   });
 };
-
-//for query
-//    .get("/reviews/:review:id/comments", { params: {review_id} })
-
 export const getCommentsByReviewId = (review_id) => {
   return beGamesApi.get(`/reviews/${review_id}/comments`).then((res) => {
     return res.data.comments;

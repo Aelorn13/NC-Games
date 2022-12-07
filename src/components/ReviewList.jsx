@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 import { getReviews, patchReview } from "../utils/api";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import ChangeCategory from "./ChangeCategory";
 
 function ReviewList() {
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
 
+  const { category } = useParams();
+
   useEffect(() => {
-    getReviews().then((reviews) => {
+    getReviews(category).then((reviews) => {
       setLoading(false);
       setReviews(reviews);
     });
-  }, []);
+  }, [category]);
+
   const handleClickLike = (review_id) => {
     setReviews((reviews) => {
       return reviews.map((review) => {
@@ -38,6 +43,7 @@ function ReviewList() {
     <p>loading...</p>
   ) : (
     <div className="ReviewList">
+      <ChangeCategory />
       <ul>
         {reviews.map((review) => {
           return (
