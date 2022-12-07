@@ -22,7 +22,7 @@ function ChangeCategory() {
         <div className="dropdown-content">
           {arrayCateg.map((category) => {
             return (
-              <Link to={`/category/${category}`}>
+              <Link key={category} to={`/category/${category}`}>
                 <a href={category}>{category}</a>
               </Link>
             );
