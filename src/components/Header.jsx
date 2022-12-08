@@ -7,11 +7,10 @@ function Header() {
 
   return (
     <div>
-      <h1>NC Games</h1>
+      <h1 className="Header">NC Games</h1>
       <h3>You logged in as {user.username}</h3>
-      <p> To change user press this special button </p>
       <Link to="/users">
-        <button>Users</button>
+        <button className="buttonUsers">Change user</button>
       </Link>
     </div>
   );

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+//for some reason this link doesn't work from wrong category
 export default function NotFound() {
   return (
     <div>

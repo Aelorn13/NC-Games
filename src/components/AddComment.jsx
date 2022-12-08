@@ -6,21 +6,24 @@ function AddComment({ setComments, review_id }) {
   const [newComment, setNewComment] = useState("");
   const { user } = useContext(UserContext);
   const handleSubmitAddComment = (e) => {
-    e.preventDefault();
-    postComment(newComment, user, review_id).then((commentFromApi) => {
-      setNewComment("");
-      setComments((comments) => {
-        const newComments = [...comments];
-        newComments.push(commentFromApi);
-        return newComments;
+    if (newComment === "") alert("Unable to send an empty comment");
+    else {
+      e.preventDefault();
+      postComment(newComment, user, review_id).then((commentFromApi) => {
+        setNewComment("");
+        setComments((comments) => {
+          const newComments = [...comments];
+          newComments.push(commentFromApi);
+          return newComments;
+        });
       });
-    });
+    }
   };
 
   return (
     <section>
       <form onSubmit={handleSubmitAddComment}>
-        <label>Your new special and important comment: </label>
+        <label>Send new comment: </label>
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}

@@ -37,17 +37,17 @@ function Comments({ review_id }) {
     <p>loading...</p>
   ) : (
     <div>
-      <h3>Comments:</h3>
+      <h2>Comments:</h2>
       {comments.length === 0 ? (
         <p> No comments yet</p>
       ) : (
-        <ol>
+        <ol className="commentsSection">
           {comments.map((comment) => {
             return (
-              <div key={comment.comment_id}>
-                <h5>{comment.author}</h5>
+              <div key={comment.comment_id} className="comment">
+                <h3>{comment.author}</h3>
                 <p>{comment.body}</p>
-                <p>Likes: {comment.votes}</p>
+                <label>Likes: {comment.votes}</label>
                 <button onClick={() => handleClickLike(comment.comment_id)}>
                   Like this comment
                 </button>

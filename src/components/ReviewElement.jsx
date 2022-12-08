@@ -38,7 +38,7 @@ function ReviewElement() {
   return loading ? (
     <p>loading...</p>
   ) : (
-    <div className="ReviewElement">
+    <div className="ReviewInside">
       <Link to="/">
         <button>Go Home</button>
       </Link>
@@ -48,7 +48,7 @@ function ReviewElement() {
       <img src={review.review_img_url} alt={review.title}></img>
       <p>Designer: {review.designer}</p>
       <button onClick={handleClickLikeReview}>Like this review</button>
-      <p>Votes: {review.votes}</p>
+      <label>Votes: {review.votes}</label>
       <p>{review.review_body}</p>
       <Comments review_id={review.review_id} />
     </div>
