@@ -3,17 +3,22 @@ import { getReviewById, patchReview } from "../utils/api";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 import { Link } from "react-router-dom";
+import NotFound from "./NotFound";
 
 function ReviewElement() {
   const { review_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [review, setReview] = useState({});
-
+  const [error, setError] = useState(false);
   useEffect(() => {
-    getReviewById(review_id).then((review) => {
-      setLoading(false);
-      setReview(review);
-    });
+    getReviewById(review_id)
+      .then((review) => {
+        setLoading(false);
+        setReview(review);
+      })
+      .catch((err) => {
+        setError(true);
+      });
   }, [review_id]);
   const handleClickLikeReview = () => {
     setReview({ ...review, votes: review.votes + 1 });
@@ -22,6 +27,14 @@ function ReviewElement() {
       setReview({ ...review, votes: review.votes - 1 });
     });
   };
+  if (error) {
+    return (
+      <div>
+        <h1>This review does not exist</h1>
+        <NotFound />
+      </div>
+    );
+  }
   return loading ? (
     <p>loading...</p>
   ) : (
