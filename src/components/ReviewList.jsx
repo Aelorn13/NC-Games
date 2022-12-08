@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
 import { getReviews, patchReview } from "../utils/api";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import ChangeCategory from "./ChangeCategory";
-
+import ChangeSort from "./ChangeSort";
 function ReviewList() {
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
 
-  const { category } = useParams();
+  const [queries, setQueries] = useState({});
 
+  const { category } = useParams();
+  ///dependant on queries state from change sort also
   useEffect(() => {
-    getReviews(category).then((reviews) => {
+    getReviews(category, queries).then((reviews) => {
       setLoading(false);
       setReviews(reviews);
     });
-  }, [category]);
+  }, [category, queries]);
 
   const handleClickLike = (review_id) => {
     setReviews((reviews) => {
@@ -43,6 +44,7 @@ function ReviewList() {
     <p>loading...</p>
   ) : (
     <div className="ReviewList">
+      <ChangeSort queries={queries} setQueries={setQueries} />
       <ChangeCategory />
       <ul>
         {reviews.map((review) => {
@@ -60,6 +62,7 @@ function ReviewList() {
               <Link to={`/reviews/${review.review_id}`}>
                 <button>Read review</button>
               </Link>
+              <p>Created at: {review.created_at.slice(0, 10)}</p>
             </li>
           );
         })}

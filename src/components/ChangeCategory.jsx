@@ -23,7 +23,7 @@ function ChangeCategory() {
           {arrayCateg.map((category) => {
             return (
               <Link key={category} to={`/category/${category}`}>
-                <a href={category}>{category}</a>
+                {category}
               </Link>
             );
           })}

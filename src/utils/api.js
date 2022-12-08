@@ -4,10 +4,24 @@ const beGamesApi = axios.create({
   baseURL: "https://dead-pink-hare-garb.cyclic.app/api",
 });
 
-export const getReviews = (category) => {
-  return beGamesApi.get("/reviews", { params: { category } }).then((res) => {
-    return res.data.reviews;
-  });
+export const getReviews = (category, { order, sort_by }) => {
+  if (order) {
+    if (order === "Ascending") order = "ASC";
+    else {
+      order = "DESC";
+    }
+  }
+  if (sort_by) {
+    if (sort_by === "Comment count") sort_by = "comment_count";
+    else if (sort_by === "Date") sort_by = "created_at";
+    else if (sort_by === "Votes") sort_by = "votes";
+  }
+  console.log(sort_by, order);
+  return beGamesApi
+    .get("/reviews", { params: { category, order, sort_by } })
+    .then((res) => {
+      return res.data.reviews;
+    });
 };
 
 export const getUsers = () => {
