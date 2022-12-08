@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { getReviewById, patchReview } from "../utils/api";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
+import { Link } from "react-router-dom";
+
 function ReviewElement() {
   const { review_id } = useParams();
   const [loading, setLoading] = useState(true);
@@ -24,6 +26,9 @@ function ReviewElement() {
     <p>loading...</p>
   ) : (
     <div className="ReviewElement">
+      <Link to="/">
+        <button>Go Home</button>
+      </Link>
       <h2>{review.title}</h2>
       <p>Category: {review.category}</p>
       <p>posted by: {review.owner}</p>
