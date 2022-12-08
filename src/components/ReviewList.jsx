@@ -10,7 +10,6 @@ function ReviewList() {
   const [queries, setQueries] = useState({});
 
   const { category } = useParams();
-  ///dependant on queries state from change sort also
   useEffect(() => {
     getReviews(category, queries).then((reviews) => {
       setLoading(false);

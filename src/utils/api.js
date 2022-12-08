@@ -16,7 +16,6 @@ export const getReviews = (category, { order, sort_by }) => {
     else if (sort_by === "Date") sort_by = "created_at";
     else if (sort_by === "Votes") sort_by = "votes";
   }
-  console.log(sort_by, order);
   return beGamesApi
     .get("/reviews", { params: { category, order, sort_by } })
     .then((res) => {
