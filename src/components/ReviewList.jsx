@@ -12,6 +12,7 @@ function ReviewList() {
 
   const { category } = useParams();
   useEffect(() => {
+    setError(false);
     getReviews(category, queries)
       .then((reviews) => {
         setLoading(false);

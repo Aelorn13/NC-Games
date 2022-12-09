@@ -21,7 +21,7 @@ function ChangeSort({ queries, setQueries }) {
     }
   };
   return (
-    <div>
+    <div className="sortButtonsInLine">
       <div className="dropdown">
         <button className="dropbtn" onClick={() => setSearchParams()}>
           Choose sort by
