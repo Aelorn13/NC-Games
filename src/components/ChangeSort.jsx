@@ -21,8 +21,7 @@ function ChangeSort({ queries, setQueries }) {
     }
   };
   return (
-    <div>
-      <button onClick={buttonToggle}>{textButton}</button>
+    <div className="sortButtonsInLine">
       <div className="dropdown">
         <button className="dropbtn" onClick={() => setSearchParams()}>
           Choose sort by
@@ -40,6 +39,9 @@ function ChangeSort({ queries, setQueries }) {
           })}
         </div>
       </div>
+      <button className="toggleButton" onClick={buttonToggle}>
+        {textButton}
+      </button>
     </div>
   );
 }

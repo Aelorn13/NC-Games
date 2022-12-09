@@ -7,11 +7,10 @@ function DeleteComment({ comment_id, author, setDeleteID }) {
   const handleDeleteComment = (comment_id) => {
     deleteComment(comment_id).then(() => {
       setDeleteID(comment_id);
-      //update state of comments somehow?
     });
   };
   return user.username === author ? (
-    <button onClick={() => handleDeleteComment(comment_id)}>DELETE ME</button>
+    <button onClick={() => handleDeleteComment(comment_id)}>Delete</button>
   ) : (
     <></>
   );

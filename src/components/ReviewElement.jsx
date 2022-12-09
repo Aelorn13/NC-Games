@@ -3,17 +3,22 @@ import { getReviewById, patchReview } from "../utils/api";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 import { Link } from "react-router-dom";
+import NotFound from "./NotFound";
 
 function ReviewElement() {
   const { review_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [review, setReview] = useState({});
-
+  const [error, setError] = useState(false);
   useEffect(() => {
-    getReviewById(review_id).then((review) => {
-      setLoading(false);
-      setReview(review);
-    });
+    getReviewById(review_id)
+      .then((review) => {
+        setLoading(false);
+        setReview(review);
+      })
+      .catch((err) => {
+        setError(true);
+      });
   }, [review_id]);
   const handleClickLikeReview = () => {
     setReview({ ...review, votes: review.votes + 1 });
@@ -22,10 +27,18 @@ function ReviewElement() {
       setReview({ ...review, votes: review.votes - 1 });
     });
   };
+  if (error) {
+    return (
+      <div>
+        <h1>This review does not exist</h1>
+        <NotFound />
+      </div>
+    );
+  }
   return loading ? (
     <p>loading...</p>
   ) : (
-    <div className="ReviewElement">
+    <div className="ReviewInside">
       <Link to="/">
         <button>Go Home</button>
       </Link>
@@ -35,7 +48,7 @@ function ReviewElement() {
       <img src={review.review_img_url} alt={review.title}></img>
       <p>Designer: {review.designer}</p>
       <button onClick={handleClickLikeReview}>Like this review</button>
-      <p>Votes: {review.votes}</p>
+      <label>Votes: {review.votes}</label>
       <p>{review.review_body}</p>
       <Comments review_id={review.review_id} />
     </div>
