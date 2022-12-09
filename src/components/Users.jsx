@@ -3,7 +3,7 @@ import { getUsers } from "../utils/api.js";
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 import { Link } from "react-router-dom";
-
+//make it flexbox with resopnsive design
 function Users() {
   const [users, setUsers] = useState([]);
   const { setUser } = useContext(UserContext);
