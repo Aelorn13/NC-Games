@@ -2,17 +2,27 @@
   margin: 0;
   padding: 0;
 }
-* {
+.App {
+  background-color: #e8e5c1;
+}
+
+body {
   background-color: #e8e5c1;
 }
 .sortButtonsInLine {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .Header {
   padding: 20px;
   margin: 10px;
-  box-shadow: 0px 1px 2px 2px rgb(155, 143, 143);
+  text-align: center;
+  /* background-color: #b3b48d; */
+}
+
+ul {
+  list-style-type: none;
 }
 button {
   padding: 8px;
@@ -21,25 +31,22 @@ button {
   cursor: pointer;
 }
 .review {
-  border: #467746 2px solid;
+  background-color: #b3b48d;
   margin: 1em;
   padding: 0.5em;
+  max-width: 800px;
+  border-radius: 5px;
 }
+.userinfo {
+  width: 400px;
+}
+
 .ReviewInside {
   border: #467746 2px solid;
   margin: 1em;
   padding: 0.5em;
 }
-.commentsSection {
-  border: #467746 2px solid;
-  margin: 0.5em;
-  padding: 0.5em;
-}
-.comment {
-  border: #162416 1px solid;
-  margin: 0.5em;
-  padding: 0.5em;
-}
+
 .toggleButton {
   background-color: #467746;
   text-align: center;
@@ -67,20 +74,25 @@ button {
   text-decoration: none;
   display: block;
 }
-button:hover {
-  background-color: #2ea12e;
-}
+
 .ReviewList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   list-style-type: none;
+  background-color: #e8e5c1;
 }
 
 img {
-  max-width: 60%;
+  max-width: 80%;
   height: auto;
+  margin-top: 1rem;
+  padding: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border-radius: 5px;
 }
 
 @media only screen and (min-width: 426px) {
@@ -91,11 +103,13 @@ img {
 }
 .dropbtn {
   width: 100%;
-  background-color: #b3b48d;
-  color: rgb(0, 0, 0);
-  padding: 16px;
+  min-width: 95px;
+  background-color: #e8e5c1;
   font-size: 16px;
-  border: none;
+  border-radius: 5px;
+  border: 0;
+  font-weight: 600;
+  text-decoration: underline;
 }
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -107,35 +121,43 @@ img {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #a2aa33;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: #b3b48d;
+  border-radius: 5px;
+  width: 160px;
   z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.795);
 }
 /* Links inside the dropdown */
 .dropdown-content a {
-  text-align: center;
+  border-radius: 5px;
   color: black;
-  padding: 12px 16px;
+  padding: 8px 8px;
   text-decoration: none;
   display: block;
+  font-size: 16px;
+  font-family: Arial;
+  cursor: pointer;
 }
 .dropdown-content button {
+  border-radius: 5px;
   font-size: 16px;
+  margin: 0;
   cursor: pointer;
-  text-align: center;
-  width: 100%;
+  text-align: left;
+  width: 160px;
   color: black;
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
+  border: 0;
+  background-color: #b3b48d;
 }
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: rgb(231, 196, 99);
+  background-color: white;
 }
 .dropdown-content button:hover {
-  background-color: rgb(231, 196, 99);
+  background-color: white;
+  text-decoration: none;
 }
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -143,5 +165,150 @@ img {
 }
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #966d2f;
+  background-color: #b3b48dc7;
+}
+
+.ml {
+  margin-left: 0.5rem !important;
+}
+
+.mt {
+  margin-top: 0.5rem !important;
+}
+
+.mr {
+  margin-right: 0.5rem !important;
+}
+
+.mb {
+  margin-bottom: 0.5rem !important;
+}
+
+.link {
+  color: black;
+  font-weight: 600;
+}
+
+.link:active {
+  color: #162416;
+  font-weight: 600;
+}
+.tooltip-toggle {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-toggle:hover .tooltip {
+  visibility: visible;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #595a43;
+  color: white;
+  width: 90px;
+  padding: 0.2rem;
+  position: absolute;
+  left: 100px;
+  opacity: 0.7;
+  border-radius: 5px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.statsList {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
+  left: 75px;
+}
+
+.statsList p {
+  padding: 0.2rem;
+  color: black;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+button {
+  border-radius: 5px;
+  border: 0;
+}
+
+button:hover {
+  text-decoration: underline;
+  background-color: #9a9b78;
+}
+
+.userphoto {
+  max-height: 150px;
+  width: auto;
+}
+
+.review-body {
+  display: flex;
+}
+
+.review-body img {
+  max-width: 300px;
+  margin-right: 1rem;
+}
+
+.review-body p {
+  margin-top: 1rem;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.no-border {
+  border: 0;
+}
+
+.comment button {
+  background-color: transparent;
+  font-weight: 600;
+}
+
+.comment button:hover {
+  text-decoration: underline;
+  background-color: #9a9b78;
+}
+
+.comment-body {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1rem;
+  border-radius: 5px;
+  /* background-color: #9a9b78; */
+}
+
+ol {
+  min-width: 90vw;
+}
+
+.add-comment {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+textarea {
+  border: 0;
+  border-radius: 5px;
+  padding: 0.2rem;
+}
+
+.not-found-text {
+  margin-bottom: 1rem;
 }

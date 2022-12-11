@@ -6,12 +6,15 @@ function Header() {
   const { user } = useContext(UserContext);
 
   return (
-    <div>
-      <h1 className="Header">NC Games</h1>
-      <h3>You logged in as {user.username}</h3>
-      <Link to="/users">
-        <button className="buttonUsers">Change user</button>
-      </Link>
+    <div className="Header">
+      <h2 className="mb">NC Games</h2>
+      <div className="tooltip-toggle">
+        You logged in as
+        <Link className="link ml" to="/users">
+          {user.username}
+        </Link>
+        <div className="tooltip">Change user</div>
+      </div>
     </div>
   );
 }

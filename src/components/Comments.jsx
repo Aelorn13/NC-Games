@@ -37,32 +37,42 @@ function Comments({ review_id }) {
     <p>loading...</p>
   ) : (
     <div>
-      <h2>Comments:</h2>
-      {comments.length === 0 ? (
-        <p> No comments yet</p>
-      ) : (
-        <ol className="commentsSection">
-          {comments.map((comment) => {
-            return (
-              <div key={comment.comment_id} className="comment">
-                <h3>{comment.author}</h3>
-                <p>{comment.body}</p>
-                <label>Likes: {comment.votes}</label>
-                <button onClick={() => handleClickLike(comment.comment_id)}>
-                  Like this comment
-                </button>
-                <DeleteComment
-                  setDeleteID={setDeleteID}
-                  comment_id={comment.comment_id}
-                  author={comment.author}
-                />
-              </div>
-            );
-          })}
-        </ol>
-      )}
-      <br></br>
-      <AddComment setComments={setComments} review_id={review_id} />
+      <div className="reviewList">
+        <h2>Comments:</h2>
+        {comments.length === 0 ? (
+          <p> No comments yet</p>
+        ) : (
+          <ol>
+            {comments.map((comment) => {
+              return (
+                <div key={comment.comment_id} className="review">
+                  <div className="comment comment-header">
+                    <strong>{comment.author}</strong>
+                    <button
+                      className="no-border"
+                      onClick={() => handleClickLike(comment.comment_id)}
+                    >
+                      + {comment.votes}
+                    </button>
+                  </div>
+                  <p className="mt mb">{comment.body}</p>
+                  <div className="comment actions">
+                    <DeleteComment
+                      setDeleteID={setDeleteID}
+                      comment_id={comment.comment_id}
+                      author={comment.author}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </ol>
+        )}
+        <br></br>
+      </div>
+      <div>
+        <AddComment setComments={setComments} review_id={review_id} />
+      </div>
     </div>
   );
 }

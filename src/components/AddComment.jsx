@@ -22,23 +22,27 @@ function AddComment({ setComments, review_id }) {
       });
     }
   };
-  console.log(isDisabled);
   return (
-    <section>
+    <section className="review">
       <form onSubmit={handleSubmitAddComment}>
-        <label>Send new comment: </label>
-        <textarea
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          required
-        ></textarea>
-        <button
-          type="submit"
-          disabled={isDisabled ? true : false}
-          onClick={handleSubmitAddComment}
-        >
-          Send comment
-        </button>
+        <div className="comment add-comment">
+          <textarea
+            rows="4"
+            cols="50"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            required
+            placeholder="Add your comment.."
+          ></textarea>
+          <button
+            className="ml"
+            type="submit"
+            disabled={isDisabled ? true : false}
+            onClick={handleSubmitAddComment}
+          >
+            Add comment
+          </button>
+        </div>
       </form>
     </section>
   );

@@ -18,19 +18,28 @@ function Users() {
   };
   return (
     <div>
-      <Link to="/">
-        <button>Go Home</button>
+      <Link className="link ml" to="/">
+        Go Back
       </Link>
       {users.map((user) => {
         return (
-          <div key={user.username}>
-            <h1>{user.username}</h1>
-            <br />
-            <h3>{user.name}</h3>
-            <br />
-            <img src={user.avatar_url} alt={user.username} />
-            <br />
-            <button onClick={() => handleClickChangeUser(user)}>Log in</button>
+          <div className="ReviewList">
+            <div className="review userinfo" key={user.username}>
+              <h1 className="text-center">{user.username}</h1>
+              <img
+                className="userphoto"
+                src={user.avatar_url}
+                alt={user.username}
+              />
+              <div className="text-center mt mb">
+                <strong>{user.name}</strong>
+              </div>
+              <div className="actions">
+                <button onClick={() => handleClickChangeUser(user)}>
+                  Log in
+                </button>
+              </div>
+            </div>
           </div>
         );
       })}

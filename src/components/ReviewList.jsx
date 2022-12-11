@@ -9,7 +9,11 @@ function ReviewList() {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(false);
   const [queries, setQueries] = useState({});
-
+  const formatCategory = (category) => {
+    return (
+      category.charAt(0).toUpperCase() + category.slice(1).replaceAll("-", " ")
+    );
+  };
   const { category } = useParams();
   useEffect(() => {
     setError(false);
@@ -46,14 +50,16 @@ function ReviewList() {
   };
   if (error) {
     return (
-      <div>
-        <h1>This category does not exist</h1>
+      <div className="text-center">
+        <h1 className="not-found-text">This category does not exist!</h1>
         <NotFound />
       </div>
     );
   }
   return loading ? (
-    <p>loading...</p>
+    <div className="ReviewList">
+      <p>loading...</p>
+    </div>
   ) : (
     <div className="ReviewList">
       <div className="sortButtonsInLine">
@@ -63,22 +69,39 @@ function ReviewList() {
       <ul>
         {reviews.map((review) => {
           return (
-            <li className="review" key={review.review_id}>
-              <h2>{review.title}</h2>
-              <p>Category: {review.category}</p>
-              <img src={review.review_img_url} alt={review.title}></img>
-              <div>
-                <p>Created at: {review.created_at.slice(0, 10)}</p>
-                <p>Votes: {review.votes}</p>
-                <button onClick={() => handleClickLike(review.review_id)}>
-                  Like
-                </button>
-                <label>Comments: {review.comment_count}</label>
-                <Link to={`/reviews/${review.review_id}`}>
-                  <button>Read review</button>
-                </Link>
-              </div>
-            </li>
+            <div key={review.review_id} className="review">
+              <li>
+                <h2 className="mt mb text-center">{review.title}</h2>
+                <img
+                  className="mb"
+                  src={review.review_img_url}
+                  alt={review.title}
+                ></img>
+                <div className="statsList card-body">
+                  <p>
+                    <strong>Category:</strong> {formatCategory(review.category)}
+                  </p>
+                  <p>
+                    <strong>Created at:</strong>{" "}
+                    {review.created_at.slice(0, 10)}
+                  </p>
+                  <p>
+                    <strong>Votes:</strong> {review.votes}
+                  </p>
+                  <p>
+                    <strong>Comments:</strong> {review.comment_count}
+                  </p>
+                </div>
+                <div className="actions card-body">
+                  <button onClick={() => handleClickLike(review.review_id)}>
+                    Vote
+                  </button>
+                  <Link to={`/reviews/${review.review_id}`}>
+                    <button>Read</button>
+                  </Link>
+                </div>
+              </li>
+            </div>
           );
         })}
       </ul>

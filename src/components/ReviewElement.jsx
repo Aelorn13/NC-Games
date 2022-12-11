@@ -20,6 +20,11 @@ function ReviewElement() {
         setError(true);
       });
   }, [review_id]);
+  const formatCategory = (category) => {
+    return (
+      category.charAt(0).toUpperCase() + category.slice(1).replaceAll("-", " ")
+    );
+  };
   const handleClickLikeReview = () => {
     setReview({ ...review, votes: review.votes + 1 });
     patchReview(review_id).catch((err) => {
@@ -29,8 +34,8 @@ function ReviewElement() {
   };
   if (error) {
     return (
-      <div>
-        <h1>This review does not exist</h1>
+      <div className="text-center">
+        <h1 className="not-found-text">This review does not exist!</h1>
         <NotFound />
       </div>
     );
@@ -38,19 +43,38 @@ function ReviewElement() {
   return loading ? (
     <p>loading...</p>
   ) : (
-    <div className="ReviewInside">
-      <Link to="/">
-        <button>Go Home</button>
+    <div>
+      <Link className="link ml" to="/">
+        Go Back
       </Link>
-      <h2>{review.title}</h2>
-      <p>Category: {review.category}</p>
-      <p>posted by: {review.owner}</p>
-      <img src={review.review_img_url} alt={review.title}></img>
-      <p>Designer: {review.designer}</p>
-      <button onClick={handleClickLikeReview}>Like this review</button>
-      <label>Votes: {review.votes}</label>
-      <p>{review.review_body}</p>
-      <Comments review_id={review.review_id} />
+
+      <div className="ReviewList">
+        <div className="review">
+          <h2 className="text-center">{review.title}</h2>
+          <div className="review-body">
+            <div>
+              <img src={review.review_img_url} alt={review.title}></img>
+              <p>
+                <strong>Category:</strong> {formatCategory(review.category)}
+              </p>
+              <p>
+                <strong>Posted by:</strong> {review.owner}
+              </p>
+              <p>
+                <strong>Designer:</strong> {review.designer}
+              </p>
+            </div>
+            <div>
+              <p>{review.review_body}</p>
+            </div>
+          </div>
+          <div className="actions">
+            <p className="mr">Votes: {review.votes}</p>
+            <button onClick={handleClickLikeReview}>Like</button>
+          </div>
+        </div>
+        <Comments review_id={review.review_id} />
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function ChangeCategory() {
   const [arrayCateg, setArrayCateg] = useState([]);
+  const [buttonName, setButtonName] = useState("Category");
 
   useEffect(() => {
     getCategories().then((categories) => {
@@ -13,17 +14,30 @@ function ChangeCategory() {
       setArrayCateg(newList);
     });
   }, []);
+  const formatCategory = (category) => {
+    return (
+      category.charAt(0).toUpperCase() + category.slice(1).replaceAll("-", " ")
+    );
+  };
   return (
     <div>
       <div className="dropdown">
         <Link to="/">
-          <button className="dropbtn">Choose category</button>
+          <button onClick={() => setButtonName("Category")} className="dropbtn">
+            {buttonName}
+          </button>
         </Link>
         <div className="dropdown-content">
           {arrayCateg.map((category) => {
             return (
-              <Link key={category} to={`/category/${category}`}>
-                {category}
+              <Link
+                onClick={() => {
+                  setButtonName(formatCategory(category));
+                }}
+                key={category}
+                to={`/category/${category}`}
+              >
+                {formatCategory(category)}
               </Link>
             );
           })}
