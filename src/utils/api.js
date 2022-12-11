@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const beGamesApi = axios.create({
-  baseURL: "https://dead-pink-hare-garb.cyclic.app/api",
+  baseURL: "https://nc-backendgames-ael.onrender.com/",
 });
 
 export const getReviews = (category, { order, sort_by }) => {
