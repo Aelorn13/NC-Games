@@ -49,28 +49,31 @@ function ReviewElement() {
       </Link>
 
       <div className="ReviewList">
-        <div className="review">
-          <h2 className="text-center">{review.title}</h2>
-          <div className="review-body">
-            <div>
-              <img src={review.review_img_url} alt={review.title}></img>
-              <p>
-                <strong>Category:</strong> {formatCategory(review.category)}
-              </p>
-              <p>
-                <strong>Posted by:</strong> {review.owner}
-              </p>
-              <p>
-                <strong>Designer:</strong> {review.designer}
-              </p>
+        <div className="sortButtonsInLine">
+          <div className="review">
+            <h2 className="text-center">{review.title}</h2>
+            <div className="review-body">
+              <div>
+                <img src={review.review_img_url} alt={review.title}></img>
+                <p>
+                  <strong>Category:</strong> {formatCategory(review.category)}
+                </p>
+                <p>
+                  <strong>Posted by:</strong> {review.owner}
+                </p>
+                <p>
+                  <strong>Designer:</strong> {review.designer}
+                </p>
+              </div>
+              <div>
+                <p>{review.review_body}</p>
+              </div>
             </div>
-            <div>
-              <p>{review.review_body}</p>
+
+            <div className="actions">
+              <p className="mr">Votes: {review.votes}</p>
+              <button onClick={handleClickLikeReview}>Like</button>
             </div>
-          </div>
-          <div className="actions">
-            <p className="mr">Votes: {review.votes}</p>
-            <button onClick={handleClickLikeReview}>Like</button>
           </div>
         </div>
         <Comments review_id={review.review_id} />

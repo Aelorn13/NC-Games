@@ -23,8 +23,8 @@ function Users() {
       </Link>
       {users.map((user) => {
         return (
-          <div className="ReviewList">
-            <div className="review userinfo" key={user.username}>
+          <div className="ReviewList" key={user.username}>
+            <div className="review userinfo">
               <h1 className="text-center">{user.username}</h1>
               <img
                 className="userphoto"

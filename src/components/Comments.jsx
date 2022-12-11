@@ -38,30 +38,35 @@ function Comments({ review_id }) {
   ) : (
     <div>
       <div className="reviewList">
-        <h2>Comments:</h2>
+        <div className="sortButtonsInLine">
+          <h2>Comments:</h2>
+        </div>
+
         {comments.length === 0 ? (
           <p> No comments yet</p>
         ) : (
           <ol>
             {comments.map((comment) => {
               return (
-                <div key={comment.comment_id} className="review">
-                  <div className="comment comment-header">
-                    <strong>{comment.author}</strong>
-                    <button
-                      className="no-border"
-                      onClick={() => handleClickLike(comment.comment_id)}
-                    >
-                      + {comment.votes}
-                    </button>
-                  </div>
-                  <p className="mt mb">{comment.body}</p>
-                  <div className="comment actions">
-                    <DeleteComment
-                      setDeleteID={setDeleteID}
-                      comment_id={comment.comment_id}
-                      author={comment.author}
-                    />
+                <div key={comment.comment_id} className="sortButtonsInLine">
+                  <div className="review">
+                    <div className="comment comment-header">
+                      <strong>{comment.author}</strong>
+                      <button
+                        className="no-border"
+                        onClick={() => handleClickLike(comment.comment_id)}
+                      >
+                        + {comment.votes}
+                      </button>
+                    </div>
+                    <p className="mt mb">{comment.body}</p>
+                    <div className="comment actions">
+                      <DeleteComment
+                        setDeleteID={setDeleteID}
+                        comment_id={comment.comment_id}
+                        author={comment.author}
+                      />
+                    </div>
                   </div>
                 </div>
               );

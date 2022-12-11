@@ -66,45 +66,48 @@ function ReviewList() {
         <ChangeCategory />
         <ChangeSort queries={queries} setQueries={setQueries} />
       </div>
-      <ul>
-        {reviews.map((review) => {
-          return (
-            <div key={review.review_id} className="review">
-              <li>
-                <h2 className="mt mb text-center">{review.title}</h2>
-                <img
-                  className="mb"
-                  src={review.review_img_url}
-                  alt={review.title}
-                ></img>
-                <div className="statsList card-body">
-                  <p>
-                    <strong>Category:</strong> {formatCategory(review.category)}
-                  </p>
-                  <p>
-                    <strong>Created at:</strong>{" "}
-                    {review.created_at.slice(0, 10)}
-                  </p>
-                  <p>
-                    <strong>Votes:</strong> {review.votes}
-                  </p>
-                  <p>
-                    <strong>Comments:</strong> {review.comment_count}
-                  </p>
-                </div>
-                <div className="actions card-body">
-                  <button onClick={() => handleClickLike(review.review_id)}>
-                    Vote
-                  </button>
-                  <Link to={`/reviews/${review.review_id}`}>
-                    <button>Read</button>
-                  </Link>
-                </div>
-              </li>
-            </div>
-          );
-        })}
-      </ul>
+      <div className="sortButtonsInline">
+        <ul>
+          {reviews.map((review) => {
+            return (
+              <div key={review.review_id} className="review">
+                <li>
+                  <h2 className="mt mb text-center">{review.title}</h2>
+                  <img
+                    className="mb"
+                    src={review.review_img_url}
+                    alt={review.title}
+                  ></img>
+                  <div className="statsList card-body">
+                    <p>
+                      <strong>Category:</strong>{" "}
+                      {formatCategory(review.category)}
+                    </p>
+                    <p>
+                      <strong>Created at:</strong>{" "}
+                      {review.created_at.slice(0, 10)}
+                    </p>
+                    <p>
+                      <strong>Votes:</strong> {review.votes}
+                    </p>
+                    <p>
+                      <strong>Comments:</strong> {review.comment_count}
+                    </p>
+                  </div>
+                  <div className="actions card-body">
+                    <button onClick={() => handleClickLike(review.review_id)}>
+                      Vote
+                    </button>
+                    <Link to={`/reviews/${review.review_id}`}>
+                      <button>Read</button>
+                    </Link>
+                  </div>
+                </li>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

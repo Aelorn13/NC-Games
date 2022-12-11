@@ -13,6 +13,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 .Header {
   padding: 20px;
@@ -34,7 +35,8 @@ button {
   background-color: #b3b48d;
   margin: 1em;
   padding: 0.5em;
-  max-width: 800px;
+  max-width: 50vw;
+  min-width: 450px;
   border-radius: 5px;
 }
 .userinfo {
@@ -77,11 +79,13 @@ button {
 
 .ReviewList {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+
   flex-wrap: wrap;
   justify-content: center;
   list-style-type: none;
   background-color: #e8e5c1;
+  align-content: space-around;
 }
 
 img {
@@ -95,12 +99,6 @@ img {
   border-radius: 5px;
 }
 
-@media only screen and (min-width: 426px) {
-  .img {
-    max-width: 100%;
-    height: auto;
-  }
-}
 .dropbtn {
   width: 100%;
   min-width: 95px;
@@ -233,7 +231,7 @@ img {
 .actions {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 button {
@@ -272,6 +270,10 @@ button:hover {
 
 .no-border {
   border: 0;
+}
+
+.comment {
+  min-width: 40vw;
 }
 
 .comment button {
