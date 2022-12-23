@@ -8,7 +8,6 @@ function ChangeSort({ queries, setQueries }) {
     sort_by: "Sort by",
     order: "Order",
   });
-  //объединить все кнопки в одну хуйню
 
   // useEffect(() => {
   //   setQueries({ ...queries, order: textButton });

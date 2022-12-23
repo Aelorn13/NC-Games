@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const beGamesApi = axios.create({
-  baseURL: "https://nc-backendgames-ael.onrender.com/",
+  baseURL: "https://nc-backendgames-ael.onrender.com/api",
 });
 
 export const getReviews = (category, { order, sort_by }) => {
