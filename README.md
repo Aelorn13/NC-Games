@@ -1,6 +1,6 @@
 # README
 
-Link to deployed version - https://nc-board-games-ael.netlify.app
+Link to deployed version - https://nc-board-games-ael.netlify.app (It takes a while to load)
 
 This is a front-end project for the northcoders board games database. in this project, you can watch previously created reviews, leave comments and vote for them.
 
